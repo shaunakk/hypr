@@ -47,7 +47,7 @@ io.on('connection', function(socket) {
     str = data.toString()
     client.get('search/tweets.json', {
       q: str,
-      count: 100
+      count: 50
     }, function(error, tweets, response) {
       if (tweets.statuses.length) {
         console.log(JSON.stringify(tweets));
