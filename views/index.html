@@ -6,7 +6,12 @@
   <script src="js/jquery.min.js"></script>
 
   <script src="js/bootstrap.min.js"></script>
+  <script src="http://wilhacks.herokuapp.com/socket.io/socket.io.js"></script>
 
+  <script>
+    var socket = io.connect("wilhacks.herokuapp.com");
+    socket.emit("stock", "hi")
+  </script>
   <link href="css/bootstrap.min.css" rel="stylesheet" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,9 +33,9 @@
 </head>
 
 <body>
-
-
-
+  <center>
+    <input type="text" class="form-control">
+  </center>
 </body>
 
 </html>

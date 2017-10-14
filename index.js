@@ -17,6 +17,7 @@ t.on('tweet', function(tweet) {
   io.emit(tweet);
 })
 
+
 t.on('error', function(err) {
   console.log('Oh no')
 })
@@ -39,3 +40,14 @@ server = app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 io = require('socket.io')(server);
+io.on('connection', function(socket) {
+  console.log('A user connected');
+
+  socket.on('stock', function(data) {
+    console.log(data)
+  });
+  socket.on('disconnect', function() {
+    console.log('A user disconnected');
+  });
+
+});
