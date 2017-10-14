@@ -33,7 +33,8 @@
         console.log(data.statuses[i].sentiment.score)
         count += parseInt(data.statuses[i].sentiment.score)
       }
-      count = count / 10
+      count = count / 10 
+      count-=1.5
       if (count <= 0) {
         short = "Short this stock"
       } else {
