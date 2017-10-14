@@ -33,7 +33,7 @@
         console.log(data.statuses[i].sentiment.score)
         count += parseInt(data.statuses[i].sentiment.score)
       }
-      count = count / 1000
+      count = count / 10
       if (count <= 0) {
         short = "Short this stock"
       } else {
@@ -48,7 +48,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>hyperdesk</title>
+  <title>HyprDesk</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/index.css" rel="stylesheet" />
