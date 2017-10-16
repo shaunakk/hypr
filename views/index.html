@@ -38,9 +38,13 @@
       count=count*100
       count=parseInt(count)
       count=count/100
-      if (count <= 0) {
-        short = "Short this stock"
-      } else {
+      if (count == 0) {
+        short = "Stock is Neutral: Buy or Sell"
+      } 
+      else if(count<=0){
+      short="Sell or Short This Stock"
+      }
+      else {
         short = "Buy This Stock"
       }
       $("#rec").text("Average Sentiment: " + count + "\n" + short)
