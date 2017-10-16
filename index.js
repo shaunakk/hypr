@@ -49,7 +49,7 @@ io.on('connection', function(socket) {
       q: str,
       count: 50
     }, function(error, tweets, response) {
-      if (typeof tweets == undefined) {
+      if (typeof tweets != undefined) {
         console.log(JSON.stringify(tweets));
         for (i = 0; i < tweets.statuses.length; i++) {
           sent = sentiment(tweets.statuses[i].text)
