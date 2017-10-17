@@ -35,9 +35,16 @@
       }
       count = count / 10
       count -= 1.5
-      if (count <= 0) {
-        short = "Short this stock"
-      } else {
+      count=count*100
+      count=parseInt(count)
+      count=count/100
+      if (count == 0) {
+        short = "Stock is Neutral: Buy or Sell"
+      } 
+      else if(count<=0){
+      short="Sell or Short This Stock"
+      }
+      else {
         short = "Buy This Stock"
       }
       $("#rec").text("Average Sentiment: " + count + "\n" + short)
@@ -49,7 +56,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>HyprDesk</title>
+  <title>HypeDesk</title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/index.css" rel="stylesheet" />
@@ -80,7 +87,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
-          <form action="#" method="#" role="search">
+          <form action="#" method="#" onsubmit="return false" role="search">
             <div class="input-group">
               <label style="font-size:1.5em" for="#usr">$</usr><input "text-transform:uppercase" type="textarea" placeholder="BTC" class="form-control" id="usr" cols="4">
               <div class="input-group-btn">
