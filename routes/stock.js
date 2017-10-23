@@ -26,10 +26,7 @@ fs.readFile('stocks.json', 'utf8', function(err, data) {
         item.MarketCap = parseFloat(item.MarketCap * 1000000000)
       }
       item.MarketCap = parseInt(item.MarketCap * 1000) / 1000
-      item.MarketCap = numeral(item.MarketCap).format('0.0a');
 
-      item.MarketCap = item.MarketCap.replace("m", "M")
-      item.MarketCap = item.MarketCap.replace("b", "B")
       delete item.LastSale
       delete item['Summary Quote']
       delete item.IPOyear
@@ -41,6 +38,11 @@ fs.readFile('stocks.json', 'utf8', function(err, data) {
   stockData = stockData.filter(x => x)
   stockData.sort((a, b) => {
     return a.MarketCap - b.MarketCap
+  })
+  stockData.forEach((item, index) => {
+    item.MarketCap = numeral(item.MarketCap).format('0.0a');
+    item.MarketCap = item.MarketCap.replace("m", "M")
+    item.MarketCap = item.MarketCap.replace("b", "B")
   })
   stockData.reverse()
 });
