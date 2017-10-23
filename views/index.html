@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="index.js"></script>
+  <script src="js/jquery.min.js"></script>
+
+  <script src="js/bootstrap.min.js"></script>
+  <script src="http://wilhacks.herokuapp.com/socket.io/socket.io.js"></script>
+  <script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/kendo-ui-core/2014.1.416/js/cultures/kendo.culture.af-ZA.min.js"></script>
+
+
+  <script>
+    short = ""
+    $(document).ready(function() {
+      $("#datahead").hide()
+      $("#searchbtn").click(function() {
+        socket.emit("stock", "$" + $("#usr").val().toString())
+      })
+    })
+    var socket = io.connect("http://wilhacks.herokuapp.com");
+    var count = 0
+    socket.on('tweet', function(data) {
+      $("#tweetss").empty()
+      count = 0
+      console.log(JSON.stringify(data))
+      $("#datahead").show()
+      for (i = 0; i < data.statuses.length; i++) {
+        $("#tweetss").append("<tr><td style ='word-break: break-all'>" + data.statuses[i].text + "</td><td>" + data.statuses[i].user.name + "</td><td>" + data.statuses[i].sentiment.score + "</td></tr>")
+        console.log(data.statuses[i].sentiment.score)
+        count += parseInt(data.statuses[i].sentiment.score)
+      }
+      count = count / 10
+      count -= 1.5
+      count=count*100
+      count=parseInt(count)
+      count=count/100
+      if (count == 0) {
+        short = "Stock is Neutral: Buy or Sell"
+      } 
+      else if(count<=0){
+      short="Sell or Short This Stock"
+      }
+      else {
+        short = "Buy This Stock"
+      }
+      $("#rec").text("Average Sentiment: " + count + "\n" + short)
+    });
+  </script>
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>HypeDesk</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/index.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+    <a class="navbar-brand" href="#"><img src="hyperdesk.png" style="height:20px" alt=""></a>
+
+  </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a style="color:white" href="#">To start, Just type your stock ticker and press enter.</a>
+      </li>
+    </ul>
+  </div>
+</head>
+
+<body>
+  <center>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <form action="#" method="#" onsubmit="return false" role="search">
+            <div class="input-group">
+              <label style="font-size:1.5em" for="#usr">$</usr><input "text-transform:uppercase" type="textarea" placeholder="BTC" class="form-control" id="usr" cols="4">
+              <div class="input-group-btn">
+                <button type="submit" id="searchbtn">
+              <img src="enterlogo.png" style="height:60px"></button >
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+    </div>
+    <p id="rec"></p>
+
+    <table class="table table-striped table-condensed">
+    <thead>
+      <tr id="datahead">
+        <th>Tweet</th>
+        <th>Author</th>
+        <th>Sentiment</th>
+      </tr>
+    </thead>
+    <tbody id="tweetss">
+    </tbody>
+  </table>
+  </center>
+</body>
+
+</html>
