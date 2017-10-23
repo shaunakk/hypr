@@ -113,7 +113,7 @@ var Data = (function () {
     }
     ;
     Data.prototype.filterItems = function (searchTerm) {
-        if (searchTerm.length > 2) {
+        if (searchTerm.length > 0) {
             var filterCount_1 = 0;
             return this.items.filter(function (item, index, array) {
                 if (filterCount_1 < 5 && ((item.Name.toLowerCase() + item.Symbol.toLowerCase()).indexOf(searchTerm.toLowerCase()) > -1)) {
@@ -127,9 +127,10 @@ var Data = (function () {
 }());
 Data = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
 ], Data);
 
+var _a;
 //# sourceMappingURL=data.js.map
 
 /***/ }),

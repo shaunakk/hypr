@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request')
+var numeral = require('numeral');
 var stockData = []
 fs = require('fs')
 
@@ -24,7 +25,14 @@ fs.readFile('stocks.json', 'utf8', function(err, data) {
         item.MarketCap = item.MarketCap.replace("B", "")
         item.MarketCap = parseFloat(item.MarketCap * 1000000000)
       }
-      item.MarketCap = parseInt(item.MarketCap)
+      item.MarketCap = parseInt(item.MarketCap * 1000) / 1000
+      item.MarketCap = numeral(item.MarketCap).format('0.0a');
+
+      item.MarketCap = item.MarketCap.replace("m", "M")
+      item.MarketCap = item.MarketCap.replace("b", "B")
+      delete item.LastSale
+      delete item['Summary Quote']
+      delete item.IPOyear
     } else {
       delete stockData[index]
     }

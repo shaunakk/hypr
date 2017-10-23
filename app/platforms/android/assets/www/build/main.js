@@ -113,7 +113,7 @@ var Data = (function () {
     }
     ;
     Data.prototype.filterItems = function (searchTerm) {
-        if (searchTerm.length > 2) {
+        if (searchTerm.length > 1) {
             var filterCount_1 = 0;
             return this.items.filter(function (item, index, array) {
                 if (filterCount_1 < 5 && ((item.Name.toLowerCase() + item.Symbol.toLowerCase()).indexOf(searchTerm.toLowerCase()) > -1)) {

@@ -18,7 +18,7 @@ export class Data {
   };
   filterItems(searchTerm) {
 
-    if (searchTerm.length > 2) {
+    if (searchTerm.length > 0) {
       let filterCount = 0;
 
       return this.items.filter((item, index, array) => {
