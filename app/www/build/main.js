@@ -103,7 +103,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var Data = (function () {
     function Data(http) {
         this.http = http;
-        this.http.get('http://hypedesk.herokuapp.com/stock').subscribe(function (res) {
+        this.http.get('http://192.168.1.210:3000/stock').subscribe(function (res) {
             console.log(res.json());
         }, function (err) {
             console.error(JSON.stringify(err));
@@ -119,9 +119,10 @@ var Data = (function () {
 }());
 Data = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
 ], Data);
 
+var _a;
 //# sourceMappingURL=data.js.map
 
 /***/ }),

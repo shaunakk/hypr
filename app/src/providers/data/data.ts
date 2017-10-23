@@ -9,7 +9,7 @@ export class Data {
 
   constructor(public http: Http) {
 
-    this.http.get('http://hypedesk.herokuapp.com/stock').subscribe(res => {
+    this.http.get('http://192.168.1.210:3000/stock').subscribe(res => {
       console.log(res.json());
     }, (err) => {
       console.error(JSON.stringify(err));
