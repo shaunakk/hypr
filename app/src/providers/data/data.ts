@@ -9,18 +9,19 @@ export class Data {
 
   constructor(public http: Http) {
 
-    this.http.get('http://192.168.1.210:3000/stock').subscribe(res => {
-      console.log(res.json());
+    this.http.get('http://hypedesk.herokuapp.com/stock').subscribe(res => {
+      console.log(JSON.stringify(res.json()));
+      this.items = res.json()
     }, (err) => {
       console.error(JSON.stringify(err));
     });
   }
 
   filterItems(searchTerm) {
-    //
-    // return JSON.parse(this.items).filter((item) => {
-    //   return item.c.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-    // });
+
+    return this.items.filter((item) => {
+      return item.c.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
 
   }
 
