@@ -20,7 +20,7 @@ var index = require('./routes/index');
 var stock = require('./routes/stock');
 
 var app = express();
-app.use(allowCrossDomain())
+app.use(allowCrossDomain)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
