@@ -312,18 +312,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var Data = (function () {
     function Data(http) {
         this.http = http;
-        this.items = [
-            { title: 'one' },
-            { title: 'two' },
-            { title: 'three' },
-            { title: 'four' },
-            { title: 'five' },
-            { title: 'six' }
-        ];
+        this.items = this.http.get('http://hypedesk.herokuapp.com/stock');
     }
     Data.prototype.filterItems = function (searchTerm) {
-        return this.items.filter(function (item) {
-            return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+        return JSON.parse(this.items).filter(function (item) {
+            return item.c.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
         });
     };
     return Data;

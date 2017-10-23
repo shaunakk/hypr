@@ -9,21 +9,13 @@ export class Data {
 
   constructor(public http: Http) {
 
-    this.items = [
-      { title: 'one' },
-      { title: 'two' },
-      { title: 'three' },
-      { title: 'four' },
-      { title: 'five' },
-      { title: 'six' }
-    ]
-
+    this.items = this.http.get('http://hypedesk.herokuapp.com/stock')
   }
 
   filterItems(searchTerm) {
 
-    return this.items.filter((item) => {
-      return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    return JSON.parse(this.items).filter((item) => {
+      return item.c.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
     });
 
   }
