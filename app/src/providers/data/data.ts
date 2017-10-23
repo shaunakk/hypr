@@ -15,14 +15,18 @@ export class Data {
     }, (err) => {
       console.error(JSON.stringify(err));
     });
-  }
-
+  };
   filterItems(searchTerm) {
+
     if (searchTerm.length > 2) {
-      return this.items.filter((item) => {
-        return item.c.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+      let filterCount = 0;
+
+      return this.items.filter((item, index, array) => {
+        if (filterCount < 5 && ((item.Name.toLowerCase() + item.Symbol.toLowerCase()).indexOf(searchTerm.toLowerCase()) > -1)) {
+          filterCount++
+          return true;
+        }
       });
     }
   }
-
 }

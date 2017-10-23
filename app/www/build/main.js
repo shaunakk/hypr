@@ -70,7 +70,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/home/shaunak/hypr/app/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>\n\n  <ion-list>\n    <ion-item *ngFor="let item of items">\n      ${{item.a}}\n {{item.b}}\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/shaunak/hypr/app/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/home/shaunak/hypr/app/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>\n\n  <ion-list>\n    <ion-item *ngFor="let item of items">\n\n      {{item.Symbol}} {{item.Name}} {{item.MarketCap}}\n\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/shaunak/hypr/app/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_data_data__["a" /* Data */]])
 ], HomePage);
@@ -111,10 +111,15 @@ var Data = (function () {
             console.error(JSON.stringify(err));
         });
     }
+    ;
     Data.prototype.filterItems = function (searchTerm) {
         if (searchTerm.length > 2) {
-            return this.items.filter(function (item) {
-                return item.c.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+            var filterCount_1 = 0;
+            return this.items.filter(function (item, index, array) {
+                if (filterCount_1 < 5 && ((item.Name.toLowerCase() + item.Symbol.toLowerCase()).indexOf(searchTerm.toLowerCase()) > -1)) {
+                    filterCount_1++;
+                    return true;
+                }
             });
         }
     };
