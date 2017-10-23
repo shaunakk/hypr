@@ -5,7 +5,7 @@ var stockData = []
 fs = require('fs')
 
 router.get('/', function(req, res, next) {
-  res.send(JSON.stringify(stockData));
+  res.send(stockData);
 
 });
 
