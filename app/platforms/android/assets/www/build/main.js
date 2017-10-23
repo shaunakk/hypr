@@ -70,7 +70,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/home/shaunak/hypr/app/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>\n\n  <ion-list>\n    <ion-item *ngFor="let item of items">\n      {{item.title}}\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/shaunak/hypr/app/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/home/shaunak/hypr/app/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>\n\n  <ion-list>\n    <ion-item *ngFor="let item of items">\n      ${{item.a}}\n {{item.b}}\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/shaunak/hypr/app/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_data_data__["a" /* Data */]])
 ], HomePage);
@@ -102,15 +102,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var Data = (function () {
     function Data(http) {
+        var _this = this;
         this.http = http;
         this.http.get('http://hypedesk.herokuapp.com/stock').subscribe(function (res) {
-            console.log(res.json());
+            console.log(JSON.stringify(res.json()));
+            _this.items = res.json();
         }, function (err) {
-            console.log(err);
+            console.error(JSON.stringify(err));
         });
     }
     Data.prototype.filterItems = function (searchTerm) {
-        return JSON.parse(this.items).filter(function (item) {
+        return this.items.filter(function (item) {
             return item.c.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
         });
     };

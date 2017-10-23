@@ -18,11 +18,11 @@ export class Data {
   }
 
   filterItems(searchTerm) {
-
-    return this.items.filter((item) => {
-      return item.c.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-    });
-
+    if (searchTerm.length > 2) {
+      return this.items.filter((item) => {
+        return item.c.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+      });
+    }
   }
 
 }
