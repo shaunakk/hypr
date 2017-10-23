@@ -1,0 +1,8 @@
+{
+  "name": "HypeDesk",
+  "app_id": "3b457df5",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
