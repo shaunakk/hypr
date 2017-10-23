@@ -14,12 +14,5 @@ fs.readFile('stocks.json', 'utf8', function(err, data) {
   if (err) {
     return console.log(err);
   }
-  data = Array.from(new Set(JSON.parse(data)));
-  data.forEach((item, index) => {
-    stockData.push({
-      "a": item.FIELD2,
-      "b": item.FIELD3,
-      "c": item.FIELD2 + item.FIELD3
-    })
-  })
+  stockData = data
 });

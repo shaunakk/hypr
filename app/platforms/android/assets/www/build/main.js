@@ -112,9 +112,11 @@ var Data = (function () {
         });
     }
     Data.prototype.filterItems = function (searchTerm) {
-        return this.items.filter(function (item) {
-            return item.c.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-        });
+        if (searchTerm.length > 2) {
+            return this.items.filter(function (item) {
+                return item.c.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+            });
+        }
     };
     return Data;
 }());
