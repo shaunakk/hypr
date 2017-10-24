@@ -1,0 +1,11 @@
+--2017-10-23 22:49:48--  http://hypedesk.herokuapp.com/stock
+Resolving hypedesk.herokuapp.com (hypedesk.herokuapp.com)... 54.225.138.206, 54.225.133.127, 50.19.107.142, ...
+Connecting to hypedesk.herokuapp.com (hypedesk.herokuapp.com)|54.225.138.206|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 733420 (716K) [application/json]
+Saving to: ‘stock.240’
+
+stock.240                                                    13%[==================>                                                                                                                        ]  98.74K   436KB/s               stock.240                                                   100%[==========================================================================================================================================>] 716.23K  1.70MB/s    in 0.4s    
+
+2017-10-23 22:49:48 (1.70 MB/s) - ‘stock.240’ saved [733420/733420]
+

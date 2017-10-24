@@ -6,6 +6,7 @@
     "start": "./node_modules/.bin/forever ./bin/www"
   },
   "dependencies": {
+    "alphavantage": "0.0.7",
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",

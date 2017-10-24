@@ -17,7 +17,7 @@ setInterval(function () {
 	console.log('Memory Usage: %s', parseInt(stat.memory/1000000),"MB") //those are bytes
 
     })
-}, 1000)
+}, 100000)
 /**
  * Get port from environment and store in Express.
  */
