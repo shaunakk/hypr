@@ -7,7 +7,17 @@
 var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
+var pusage = require('pidusage')
 
+// Compute statistics every second:
+
+setInterval(function () {
+    pusage.stat(process.pid, function (err, stat) {
+	console.log('CPU Percent: %s', stat.cpu,"%")
+	console.log('Memory Usage: %s', parseInt(stat.memory/1000000),"MB") //those are bytes
+
+    })
+}, 1000)
 /**
  * Get port from environment and store in Express.
  */
@@ -32,7 +42,7 @@ server.on('listening', onListening);
 /**
  * Normalize a port into a number, string, or false.
  */
- 
+
 function normalizePort(val) {
   var port = parseInt(val, 10);
 
