@@ -57,7 +57,7 @@ function refreshStockData() {
             item.MarketCap = numeral(item.MarketCap).format('0.0a');
             item.MarketCap = item.MarketCap.replace("m", "M")
             item.MarketCap = item.MarketCap.replace("b", "B")
-            item.LastSale = "$" + item.LastSale.toFixed(2)
+            item.LastSale = "$" + parseFloat(item.LastSale).toFixed(2)
           })
           stockData = stockDataDuring
         })
