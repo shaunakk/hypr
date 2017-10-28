@@ -14,6 +14,8 @@ router.get('/', function(req, res, next) {
       stockData.y.push(formattedDate)
       stockData.x.push(stockData.intraday['Time Series (15min)'][stockDate].open)
     }
+    stockData.x.reverse()
+    stockData.y.reverse()
     delete stockData.intraday
     res.send(stockData)
   });
