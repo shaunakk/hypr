@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
     for (let stockDate in stockData.intraday['Time Series (15min)']) {
       let formattedDate = moment(stockDate).format('M/D/YY h:mmA');
       stockData.y.push(formattedDate)
-      stockData.x.push(stockData.intraday['Time Series (15min)'][stockDate].open)
+      stockData.x.push("$" + parseFloat(stockData.intraday['Time Series (15min)'][stockDate].open).toFixed(2))
     }
     stockData.x.reverse()
     stockData.y.reverse()
