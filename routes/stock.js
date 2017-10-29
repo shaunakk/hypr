@@ -24,6 +24,7 @@ router.get('/', function(req, res, next) {
   console.log("REQUEST RECIEVED")
     //console.log(stockData);
 });
+setInterval(removeByAttr(stockData, 'MarketCap', '0.0'),5000)
 setInterval(refreshStockData, 3600000)
 function refreshStockData() {
   stockDataDuring = []
