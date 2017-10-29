@@ -8,11 +8,12 @@ var stockDataDuring = []
 fs = require('fs')
 var removeByAttr = function(arr, attr, value){
     var i = arr.length;
+    console.log("inside")
     while(i--){
        if( arr[i] 
            && arr[i].hasOwnProperty(attr) 
            && (arguments.length > 2 && arr[i][attr] === value ) ){ 
-
+            console.log("fired")
            arr.splice(i,1);
 
        }
@@ -22,7 +23,7 @@ var removeByAttr = function(arr, attr, value){
 router.get('/', function(req, res, next) {
   res.send(stockData);
   console.log("REQUEST RECIEVED")
-
+    console.log(stockData);
 });
 setInterval(refreshStockData, 3600000)
 function refreshStockData() {
