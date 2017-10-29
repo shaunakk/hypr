@@ -8,11 +8,11 @@ var stockDataDuring = []
 fs = require('fs')
 var removeByAttr = function(arr, attr, value){
     var i = arr.length;
-    console.log("inside")
+
     while(i--){
        if( 
            (parseInt(arr[i][attr]) == value ) ){ 
-            console.log("fired")
+          
            arr.splice(i,1);
 
        }
@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
   console.log("REQUEST RECIEVED")
     //console.log(stockData);
 });
-setInterval(removezero,5000)
+setTimeout(removezero,10000)
 function removezero(){
 removeByAttr(stockData, 'MarketCap', '0.0')
 }
