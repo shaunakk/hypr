@@ -11,7 +11,7 @@ var removeByAttr = function(arr, attr, value){
     console.log("inside")
     while(i--){
        if( 
-           (arguments.length > 2 && parseInt(arr[i][attr]) == value ) ){ 
+           (parseInt(arr[i][attr]) == value ) ){ 
             console.log("fired")
            arr.splice(i,1);
 
