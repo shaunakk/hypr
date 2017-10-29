@@ -10,9 +10,8 @@ var removeByAttr = function(arr, attr, value){
     var i = arr.length;
     console.log("inside")
     while(i--){
-       if( arr[i] 
-           && arr[i].hasOwnProperty(attr) 
-           && (arguments.length > 2 && arr[i][attr] === value ) ){ 
+       if( 
+           (arguments.length > 2 && parseInt(arr[i][attr]) == value ) ){ 
             console.log("fired")
            arr.splice(i,1);
 
