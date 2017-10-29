@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   res.send(stockData);
 
 });
-setInterval(refreshStockData, 300000)
+setInterval(refreshStockData, 1200000)
 function refreshStockData() {
   stockDataDuring = []
   request('http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nasdaq&render=download', function(error, response, body) {
