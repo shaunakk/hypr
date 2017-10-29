@@ -48,10 +48,11 @@ function refreshStockData() {
               delete item.field9
               delete item.IPOyear
               } 
-            }
-            else{
+              else{
               delete item
               }
+            }
+            
           });
 
           stockDataDuring.reverse()
