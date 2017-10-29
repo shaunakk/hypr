@@ -48,7 +48,7 @@ function refreshStockData() {
               delete item.field9
               delete item.IPOyear
               if(parseInt(item.MarketCap)==0){
-              delete item
+              console.log(item.MarketCap)
               }
             }
             
@@ -60,6 +60,7 @@ function refreshStockData() {
           })
           stockDataDuring.reverse()
           stockDataDuring.forEach((item, index) => {
+            
             item.MarketCap = numeral(item.MarketCap).format('0.0a');
             item.MarketCap = item.MarketCap.replace("m", "M")
             item.MarketCap = item.MarketCap.replace("b", "B")
