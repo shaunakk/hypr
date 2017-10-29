@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+
+  </ion-navbar>
+
+  <ion-searchbar placeholder="Search Stock" [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-card type="button" *ngFor="let item of items" (click)="stockTapped($event, item)">
+    <ion-card-header>
+      {{item.Symbol}} {{item.Name}}
+    </ion-card-header>
+    <ion-card-content>
+      Current Price: {{item.LastSale}} <br> Market Cap: {{item.MarketCap}} <br> Industry: {{item.industry}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

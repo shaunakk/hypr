@@ -1,0 +1,42 @@
+<!--
+  Generated template for the StockPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{stock.Name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-spinner name="circles" *ngIf="priceLoad == true"></ion-spinner>
+  <ion-card *ngIf="priceLoad ==false">
+
+    <ion-card-header>
+      Price
+    </ion-card-header>
+
+    <ion-card-content>
+      <canvas #lineCanvas></canvas>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2><button ion-button block>1D</button></ion-col>
+          <ion-col col-2><button ion-button block>1W</button></ion-col>
+          <ion-col col-2><button ion-button block>1M</button></ion-col>
+          <ion-col col-2><button ion-button block>3M</button></ion-col>
+          <ion-col col-2><button ion-button block>1Y</button></ion-col>
+          <ion-col col-2><button ion-button block>ALL</button></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+  </ion-card>
+
+
+
+</ion-content>
