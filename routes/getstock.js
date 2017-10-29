@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     stockData.y = []
     stockData.x = []
     for (let stockDate in stockData.intraday['Time Series (15min)']) {
-      let formattedDate = moment(stockDate).format('MMM D ,YYYY h:mmA');
+      let formattedDate = moment(stockDate).format('MMM D, YYYY h:mmA');
       stockData.y.push(formattedDate)
       stockData.x.push(parseFloat(stockData.intraday['Time Series (15min)'][stockDate].open).toFixed(2))
     }
