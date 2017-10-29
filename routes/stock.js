@@ -23,7 +23,7 @@ var removeByAttr = function(arr, attr, value){
 router.get('/', function(req, res, next) {
   res.send(stockData);
   console.log("REQUEST RECIEVED")
-    console.log(stockData);
+    //console.log(stockData);
 });
 setInterval(refreshStockData, 3600000)
 function refreshStockData() {
