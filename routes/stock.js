@@ -30,7 +30,7 @@ function refreshStockData() {
         }).on('done', () => {
           stockDataDuring.forEach((item, index) => {
             if ('MarketCap' in item) {
-              if(item.MarketCap!=0&& item.MarketCap!="n/a"){
+              if(parseInt(item.MarketCap)!=0&& item.MarketCap!="n/a"){
               if (item.MarketCap.toString().includes('$')) {
                 item.MarketCap = item.MarketCap.replace("$", "")
               }
