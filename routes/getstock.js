@@ -17,8 +17,40 @@ router.get('/', function(req, res, next) {
     }
     stockData.x.reverse()
     stockData.y.reverse()
-    delete stockData.intraday
-    res.send(stockData)
+    stockData.wx = stockData.x.slice(-70)
+    stockData.wy = stockData.y.slice(-70)
+    alpha.data.daily(req.query.stock, 'compact', 'json').then(data => {
+      stockData.intraday = alpha.util.polish(data);
+      console.log(stockData.intraday)
+      stockData.dailyx = []
+      stockData.dailyy = []
+      for (let stockDate in stockData.intraday['data']) {
+        let formattedDate = moment(stockDate).format('MMM D, YYYY');
+        stockData.dailyx.push(formattedDate)
+        stockData.dailyy.push(parseFloat(stockData.intraday['data'][stockDate].open).toFixed(2))
+      }
+      stockData.dailyx.reverse()
+      stockData.dailyy.reverse()
+
+      alpha.data.weekly(req.query.stock, 'full', 'json').then(data => {
+        stockData.intraday = alpha.util.polish(data);
+        console.log(stockData.intraday)
+        stockData.weeklyx = []
+        stockData.weeklyy = []
+        for (let stockDate in stockData.intraday['data']) {
+          let formattedDate = moment(stockDate).format('MMM D, YYYY');
+          stockData.weeklyx.push(formattedDate)
+          stockData.weeklyy.push(parseFloat(stockData.intraday['data'][stockDate].open).toFixed(2))
+        }
+        stockData.weeklyx.reverse()
+        stockData.weeklyy.reverse()
+        stockData.yx = stockData.weeklyx.slice(-52)
+        stockData.yy = stockData.weeklyy.slice(-52)
+        delete stockData.intraday
+        res.send(stockData)
+      });
+    });
+
   });
 
 });
