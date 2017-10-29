@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
   console.log("REQUEST RECIEVED")
     //console.log(stockData);
 });
-setInterval(removezero,5000)
+
 function removezero(){
 removeByAttr(stockData, 'MarketCap', '0.0')
 }
@@ -84,7 +84,7 @@ function refreshStockData() {
             item.LastSale = "$" + parseFloat(item.LastSale).toFixed(2)
           })
           
-removeByAttr(stockData, 'MarketCap', '0.0');
+setTimeout(removezero,5000)
           stockData = stockDataDuring
         })
       })
