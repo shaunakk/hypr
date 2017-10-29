@@ -6,7 +6,19 @@ const csv = require('csvtojson')
 var stockData = []
 var stockDataDuring = []
 fs = require('fs')
+var removeByAttr = function(arr, attr, value){
+    var i = arr.length;
+    while(i--){
+       if( arr[i] 
+           && arr[i].hasOwnProperty(attr) 
+           && (arguments.length > 2 && arr[i][attr] === value ) ){ 
 
+           arr.splice(i,1);
+
+       }
+    }
+    return arr;
+}
 router.get('/', function(req, res, next) {
   res.send(stockData);
   console.log("REQUEST RECIEVED")
@@ -67,6 +79,8 @@ function refreshStockData() {
             item.MarketCap = item.MarketCap.replace("b", "B")
             item.LastSale = "$" + parseFloat(item.LastSale).toFixed(2)
           })
+          
+removeByAttr(stockData, 'MarketCap', '0.0');
           stockData = stockDataDuring
         })
       })
