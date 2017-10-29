@@ -9,6 +9,7 @@ fs = require('fs')
 
 router.get('/', function(req, res, next) {
   res.send(stockData);
+  console.log("REQUEST RECIEVED")
 
 });
 setInterval(refreshStockData, 3600000)
