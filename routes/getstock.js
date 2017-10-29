@@ -5,7 +5,7 @@ const moment = require('moment')
 const alpha = require('alphavantage')({key: '9322BZUXBXU4IQMF'});
 router.get('/', function(req, res, next) {
   let stockData = {}
-  alpha.data.intraday(req.query.stock, 'compact', 'json', '15').then(data => {
+  alpha.data.intraday(req.query.stock, 'full', 'json', '15').then(data => {
     stockData.intraday = alpha.util.polish(data);
     console.log(stockData.intraday)
     stockData.y = []
