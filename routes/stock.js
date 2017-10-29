@@ -30,6 +30,7 @@ function refreshStockData() {
         }).on('done', () => {
           stockDataDuring.forEach((item, index) => {
             if ('MarketCap' in item) {
+              if(item.MarketCap!=0&& item.MarketCap!="n/a"){
               if (item.MarketCap.toString().includes('$')) {
                 item.MarketCap = item.MarketCap.replace("$", "")
               }
@@ -46,6 +47,9 @@ function refreshStockData() {
               delete item['Summary Quote']
               delete item.field9
               delete item.IPOyear
+              } else{
+              delete item
+              }
             }
           });
 
