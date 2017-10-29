@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
   console.log("REQUEST RECIEVED")
     //console.log(stockData);
 });
-setTimeout(removezero,10000)
+setInterval(removezero,5000)
 function removezero(){
 removeByAttr(stockData, 'MarketCap', '0.0')
 }
