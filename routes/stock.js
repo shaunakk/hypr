@@ -31,6 +31,8 @@ removeByAttr(stockData, 'MarketCap', '0.0')
 setInterval(refreshStockData, 3600000)
 function refreshStockData() {
   stockDataDuring = []
+   stockData = []
+
   request('http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nasdaq&render=download', function(error, response, body) {
     if (error) {
       console.log(error)
