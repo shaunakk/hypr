@@ -7,7 +7,6 @@ router.get('/', function(req, res, next) {
   let stockData = {}
   alpha.data.intraday(req.query.stock, 'full', 'json', '30').then(data => {
     stockData.intraday = alpha.util.polish(data);
-    console.log(stockData.intraday)
     stockData.y = []
     stockData.x = []
     for (let stockDate in stockData.intraday['Time Series (30min)']) {
@@ -21,7 +20,6 @@ router.get('/', function(req, res, next) {
     stockData.wy = stockData.y.slice(-70)
     alpha.data.daily(req.query.stock, 'compact', 'json').then(data => {
       stockData.intraday = alpha.util.polish(data);
-      console.log(stockData.intraday)
       stockData.dailyx = []
       stockData.dailyy = []
       for (let stockDate in stockData.intraday['data']) {
@@ -34,7 +32,6 @@ router.get('/', function(req, res, next) {
 
       alpha.data.weekly(req.query.stock, 'full', 'json').then(data => {
         stockData.intraday = alpha.util.polish(data);
-        console.log(stockData.intraday)
         stockData.weeklyx = []
         stockData.weeklyy = []
         for (let stockDate in stockData.intraday['data']) {

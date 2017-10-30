@@ -6,35 +6,31 @@ const csv = require('csvtojson')
 var stockData = []
 var stockDataDuring = []
 fs = require('fs')
-var removeByAttr = function(arr, attr, value){
-    var i = arr.length;
+var removeByAttr = function(arr, attr, value) {
+  var i = arr.length;
 
-    while(i--){
-       if( 
-           (parseInt(arr[i][attr]) == value ) ){ 
-          
-           arr.splice(i,1);
+  while (i--) {
+    if ((parseInt(arr[i][attr]) == value)) {
 
-       }
+      arr.splice(i, 1);
+
     }
-    return arr;
+  }
+  return arr;
 }
 router.get('/', function(req, res, next) {
   res.send(stockData);
   console.log("REQUEST RECIEVED")
-    //console.log(stockData);
+  //console.log(stockData);
 });
-
-function removezero(){
-removeByAttr(stockData, 'MarketCap', '0.0')
-}
 setInterval(refreshStockData, 3600000)
 function refreshStockData() {
   stockDataDuring = []
-   stockData = []
+  stockData = []
 
   request('http://www.nasdaq.com/screening/companies-by-name.aspx?letter=0&exchange=nasdaq&render=download', function(error, response, body) {
     if (error) {
+      s
       console.log(error)
     }
     csv({noheader: false}).fromString(body).on('json', (csvRow) => { // this func will be called 3 times
@@ -49,7 +45,7 @@ function refreshStockData() {
         }).on('done', () => {
           stockDataDuring.forEach((item, index) => {
             if ('MarketCap' in item) {
-              
+
               if (item.MarketCap.toString().includes('$')) {
                 item.MarketCap = item.MarketCap.replace("$", "")
               }
@@ -66,11 +62,11 @@ function refreshStockData() {
               delete item['Summary Quote']
               delete item.field9
               delete item.IPOyear
-              if(parseInt(item.MarketCap)==0){
-              console.log(item.MarketCap)
+              if (parseInt(item.MarketCap) == 0) {
+                console.log(item.MarketCap)
               }
             }
-            
+
           });
 
           stockDataDuring.reverse()
@@ -79,14 +75,19 @@ function refreshStockData() {
           })
           stockDataDuring.reverse()
           stockDataDuring.forEach((item, index) => {
-            
+
             item.MarketCap = numeral(item.MarketCap).format('0.0a');
             item.MarketCap = item.MarketCap.replace("m", "M")
             item.MarketCap = item.MarketCap.replace("b", "B")
             item.LastSale = "$" + parseFloat(item.LastSale).toFixed(2)
+            if (parseInt(item.MarketCap) == 0) {
+              delete stockDataDuring[index];
+            }
           })
-          
-setTimeout(removezero,5000)
+          stockDataDuring.filter(function(item) {
+            return item.MarketCap !== null;
+          }).join(", ")
+          stockDataDuring.filter(v => v);
           stockData = stockDataDuring
         })
       })
