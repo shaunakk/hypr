@@ -3,7 +3,7 @@
     <name>HypeDesk</name>
     <description>By Shaunak Kale.</description>
     <author email="epicshaunak@gmail.com" href="http://github.com/shaunakk/hypr/">Shaunak Kale</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.210:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

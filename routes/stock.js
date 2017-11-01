@@ -84,10 +84,9 @@ function refreshStockData() {
               delete stockDataDuring[index];
             }
           })
-          stockDataDuring.filter(function(item) {
-            return item.MarketCap !== null;
-          }).join(", ")
-          stockDataDuring.filter(v => v);
+          stockDataDuring.filter((v) => {
+            return v != null
+          });
           stockData = stockDataDuring
         })
       })

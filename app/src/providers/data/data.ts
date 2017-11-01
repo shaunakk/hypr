@@ -22,6 +22,7 @@ export class Data {
 
       return this.items.filter((item, index, array) => {
         if (filterCount < 8 && ((item.Symbol.toLowerCase()).slice(0, searchTerm.toLowerCase().length) == searchTerm.toLowerCase() || (item.Name.toLowerCase()).slice(0, searchTerm.toLowerCase().length) == searchTerm.toLowerCase())) {
+          console.log("true")
           filterCount++
           return true;
         }

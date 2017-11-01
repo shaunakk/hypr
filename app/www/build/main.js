@@ -139,6 +139,7 @@ var Data = (function () {
             var filterCount_1 = 0;
             return this.items.filter(function (item, index, array) {
                 if (filterCount_1 < 8 && ((item.Symbol.toLowerCase()).slice(0, searchTerm.toLowerCase().length) == searchTerm.toLowerCase() || (item.Name.toLowerCase()).slice(0, searchTerm.toLowerCase().length) == searchTerm.toLowerCase())) {
+                    console.log("true");
                     filterCount_1++;
                     return true;
                 }
