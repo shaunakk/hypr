@@ -3,6 +3,7 @@ var router = express.Router();
 var request = require('request')
 var numeral = require('numeral');
 const csv = require('csvtojson')
+var temp = []
 var stockData = []
 var stockDataDuring = []
 fs = require('fs')
@@ -84,9 +85,11 @@ function refreshStockData() {
               delete stockDataDuring[index];
             }
           })
-          stockDataDuring.filter((v) => {
-            return v != null
+
+          stockDataDuring = stockDataDuring.filter(function(e) {
+            return e
           });
+
           stockData = stockDataDuring
         })
       })
